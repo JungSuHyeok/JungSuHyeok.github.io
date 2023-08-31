@@ -105,3 +105,31 @@ print('예측 정확도 : {0:.4f}'.format(accuracy_score(y_test,pred)))
 
 
 정확도 93.33%로 적합하게 학습된 모델임 알 수 있음.
+
+
+###### 최종코드
+
+```python
+from sklearn.datasets import load_iris
+from sklearn.tree import DecisionTreeClassifier
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+import pandas as pd
+
+iris = load_iris()
+
+iris_df = pd.DataFrame(data = iris_data,columns = iris.feature_names)
+iris_df['labels'] = iris.target
+
+ftr_df = iris_df.iloc[:,:-1]    
+tgt_df = iris_df.iloc[:,-1]
+
+X_train,X_test,y_train,y_test = train_test_split(ftr_df,tgt_df,test_size = 0.2,random_state = 11)
+
+dt_clf = DecisionTreeClassifier(random_state = 11)
+dt_clf.fit(X_train,y_train)
+
+print('예측 정확도 : {0:.4f}'.format(accuracy_score(y_test,pred)))
+```
+
+
